@@ -1,0 +1,13 @@
+.swpsld_mcont {
+  position: relative;
+}
+.swpsld_mrow {
+  flex-wrap: nowrap !important;
+}
+.slditem_mcont {
+  transform: translateX(-75%);
+  transition: translate 0.8s ease-in-out;
+}
+.slditem_mcont_active {
+  transform: translateX(0%);
+}

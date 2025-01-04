@@ -73,3 +73,109 @@ input {
   background: var(--txt-white) !important;
   color: var(--dark-gray) !important;
 }
+
+/*---------rvl_codes---------*/
+.txt_bx {
+  overflow: hidden !important;
+  text-align: justify !important;
+}
+.txt_bx > p {
+  line-height: 2rem;
+}
+.txt_rvl {
+  transform: translateY(120%);
+}
+.txt_rvlwrp {
+  overflow: hidden;
+}
+.txt_rvlwrp.rvl > .tit_rvl {
+  transform: translateY(0%);
+  transition: 0.4s ease-out;
+  display: inline-block;
+  opacity: 1;
+}
+.txt_rvlwrp.rvl > .txt_rvl {
+  transform: translateY(0%);
+  -webkit-transition: -webkit-transform 1500ms
+      cubic-bezier(0.215, 0.61, 0.355, 1),
+    opacity 1500ms cubic-bezier(0.215, 0.61, 0.355, 1);
+  transition: transform 1500ms cubic-bezier(0.215, 0.61, 0.355, 1),
+    opacity 1500ms cubic-bezier(0.215, 0.61, 0.355, 1);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+.imgrvl_btt {
+  position: relative;
+}
+.imgrvl_btt::after {
+  content: "";
+  position: absolute;
+  background-color: rgba(var(--bdbs-frcolor));
+  top: 0;
+  right: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  transform-origin: 100% 50%;
+  transition: height 1s;
+  transition-timing-function: cubic-bezier(0.8, 0, 0.2, 1);
+}
+.imgrvl_btt.dsbl::after {
+  background-color: #efefef !important;
+}
+.imgrvl_btt.tmbr::after {
+  background-color: #132541 !important;
+}
+.imgrvl_btt.rvl::after {
+  height: 0%;
+  transform-origin: 0% 50%;
+}
+.imgrvl_divcol {
+  position: relative;
+}
+.imgrvlsl_imgcol {
+  padding: 0px !important;
+  background-color: rgba(var(--bdbs-frcolor));
+  overflow: hidden;
+}
+
+.imgrvl_divcol.imgrvl_btt.rvl > .prtsrv_img {
+  opacity: 1;
+  transition: 1s ease-out;
+}
+.imgrvl_slitm_img {
+  transition: transform 0.4s, opacity 0.4s !important;
+  transition-timing-function: cubic-bezier(0.8, 0, 0.2, 1);
+}
+
+/* div.prjctslitm_mrow > a:hover > div.prjctslitm_immgcol > div.prjctslitm_imgcol > div.prjctslitm_imgcol > img{
+  opacity: 0.4 !important;
+  transform: scale(1.2);
+} */
+@-webkit-keyframes plcGlow {
+  0% {
+    background-position: -500px 0;
+  }
+  100% {
+    background-position: 500px 0;
+  }
+}
+.plchld_col {
+  height: 70vh;
+}
+.plchldr_anim {
+  animation: plcAnim 2s ease-in-out infinite;
+}
+
+@keyframes plcAnim {
+  50% {
+    opacity: 0.2;
+  }
+}
+
+@media (max-width: 767px) {
+  body {
+    font-size: 3vw !important;
+  }
+}
