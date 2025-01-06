@@ -1,10 +1,10 @@
 import { useRef, useState } from "react";
-import { dataInterFace } from "../home/main/MainHome";
+import { DataInterFace } from "../home/main/MainHome";
 import SwpSliderItem from "./swpslider_item/SwpSliderItem";
 import classes from "./SwipableSlider.module.css";
 
 export interface swipableSliderProps {
-  data: { products: dataInterFace[] };
+  data: { recipes: DataInterFace[] };
   style?: string;
 }
 // interface SldrContRefType {
@@ -13,13 +13,10 @@ export interface swipableSliderProps {
 // }
 const SwipableSlider = ({ data, style }: swipableSliderProps) => {
   const [sldrItemIndx, setSldrItemIndx] = useState<number>(0);
-  const [initX, setInitX] = useState<number>(0);
-  const [isMouseDown, setIsMouseDown] = useState<boolean>(false);
-  const [scrollLeft, setScrollLeft] = useState<number>(0);
 
   const nxtitemHndlr = () => {
     setSldrItemIndx((prvState) => {
-      if (prvState === data?.products.length - 1) {
+      if (prvState === data?.recipes.length - 1) {
         return 0;
       }
       return prvState + 1;
@@ -28,68 +25,50 @@ const SwipableSlider = ({ data, style }: swipableSliderProps) => {
   const prvitemHndlr = () => {
     setSldrItemIndx((prvState) => {
       if (prvState === 0) {
-        return data?.products.length - 1;
+        return data?.recipes.length - 1;
       }
       return prvState - 1;
     });
-  };
-  const sldrContRef = useRef<HTMLDivElement>(null);
-  const onMouseDownHndlr = (e: React.MouseEvent) => {
-    setInitX(e.clientX);
-    setIsMouseDown(true);
-  };
-  const onMouseMoveHndlr = (e: React.MouseEvent) => {
-    if (!isMouseDown || !sldrContRef.current) return;
-    e.preventDefault();
-    const updateX = (e.clientX - initX) * 0.115;
-    sldrContRef.current.scrollLeft = scrollLeft - updateX;
-  };
-  const onMouseUpHndlr = () => {
-    setIsMouseDown(false);
-  };
-  const onScrollHndlr = () => {
-    setScrollLeft(sldrContRef.current?.scrollLeft || scrollLeft);
   };
 
   return (
     <>
       <div className={`col-md-12 ${classes.swpsld_mcont}`}>
-        <div
-          ref={sldrContRef}
-          onMouseDown={(e) => {
-            onMouseDownHndlr(e);
-          }}
-          onMouseMove={(e) => {
-            onMouseMoveHndlr(e);
-          }}
-          onMouseUp={onMouseUpHndlr}
-          onScroll={onScrollHndlr}
-          className={`row ${classes.swpsld_mrow}`}
-        >
-          {data?.products.map((prd: dataInterFace) => (
+        <div className={`row ${classes.swpsld_mrow} m-0`}>
+          {data?.recipes.map((prd: DataInterFace) => (
             <div
               key={prd.id}
               className={`col-12 col-md-8 ${classes.slditem_mcont}`}
               style={{ translate: `${-100 * sldrItemIndx}%` }}
-              //className={`col-12 col-md-8 ${classes.slditem_mcont}`}
-              // className={
-              //   sldrItemIndx === indx
-              //     ? `col-12 col-md-8 ${classes.slditem_mcont_active}`
-              //     : `col-12 col-md-8 ${classes.slditem_mcont}`
-              // }
             >
               <SwpSliderItem {...prd} />
             </div>
           ))}
         </div>
-      </div>
-      <div className={`col-md-12 ${classes.slbuts_sec}`}>
-        <button className="btn-success" onClick={prvitemHndlr}>
-          prv
-        </button>
-        <button className="btn-primary" onClick={nxtitemHndlr}>
-          next
-        </button>
+        <div className={`${classes.slbuts_sec}`}>
+          <button
+            className={`${classes.sl_buts} ${classes.sl_butprv}`}
+            onClick={prvitemHndlr}
+          >
+            <svg viewBox="0 0 40 40" width="40" height="40" focusable="false">
+              <path d="m15.5 0.932-4.3 4.38 14.5 14.6-14.5 14.5 4.3 4.4 14.6-14.6 4.4-4.3-4.4-4.4-14.6-14.6z"></path>
+            </svg>
+          </button>
+          <button
+            className={`${classes.sl_buts} ${classes.sl_butnxt}`}
+            onClick={nxtitemHndlr}
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 40 40"
+              width="40"
+              height="40"
+              focusable="false"
+            >
+              <path d="m15.5 0.932-4.3 4.38 14.5 14.6-14.5 14.5 4.3 4.4 14.6-14.6 4.4-4.3-4.4-4.4-14.6-14.6z"></path>
+            </svg>
+          </button>
+        </div>
       </div>
     </>
   );
