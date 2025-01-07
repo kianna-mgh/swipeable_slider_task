@@ -11,7 +11,7 @@ export interface swipableSliderProps {
 //   current: HTMLDivElement;
 //   scrollLeft: number;
 // }
-const SwipableSlider = ({ data, style }: swipableSliderProps) => {
+const SwipableSlider = ({ data }: swipableSliderProps) => {
   const [sldrItemIndx, setSldrItemIndx] = useState<number>(0);
 
   const nxtitemHndlr = () => {
