@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useState } from "react";
 import { DataInterFace } from "../home/main/MainHome";
 import SwpSliderItem from "./swpslider_item/SwpSliderItem";
 import classes from "./SwipableSlider.module.css";
