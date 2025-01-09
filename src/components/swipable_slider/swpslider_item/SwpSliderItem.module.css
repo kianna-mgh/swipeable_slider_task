@@ -42,9 +42,10 @@ div.prjctslitm_mrow
   font-size: 12px !important;
 }
 .prdslitmcol {
-  cursor: pointer;
+  /* cursor: pointer; */
   background-color: rgba(var(--bdbs-bgcolor), 0.6);
   /* padding: 20px 5px 10px; */
+  user-select: none;
   border-radius: 2rem;
   -webkit-backdrop-filter: blur(4px);
   backdrop-filter: blur(4px);

@@ -69,9 +69,11 @@ const MainHome = () => {
     <div className="container-fluid main_cont">
       <div className="row main_mrow h-100">
         <div className="col-12 main_mcol m-auto">
-          <div className="row sld_rowsec">
-            <div className="col-12">
-              <SwipableSlider data={data} />
+          <div className="row sld_rowsec justify-content-center">
+            <div className="col-8">
+              {data && (
+                <SwipableSlider data={data} arrows={true} autoSliding={false} />
+              )}
             </div>
           </div>
         </div>

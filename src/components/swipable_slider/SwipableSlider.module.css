@@ -1,6 +1,8 @@
-.swpsld_wrp_row,
 .swpsld_mcont {
   position: relative;
+  white-space: nowrap;
+  /* cursor: grab;
+  overflow: hidden; */
 }
 
 .swpsld_mrow {
@@ -42,12 +44,13 @@
   z-index: 1;
   backdrop-filter: blur(4px);
   transition: all 0.4s !important;
+  z-index: 999999;
 }
 .sl_butprv {
-  left: 2rem;
+  left: -2rem;
 }
 .sl_butnxt {
-  right: 2rem;
+  right: -2rem;
 }
 .sl_buts svg {
   fill: white;
