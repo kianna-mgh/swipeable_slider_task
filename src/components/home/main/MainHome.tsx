@@ -28,7 +28,15 @@ const MainHome = () => {
   });
   const SliderSec = () => {
     if (isPending) return <SmpTemp stylClasses={"plchldr_anim plchld_col"} />;
-    return <SwipableSlider data={data} arrows={true} autoSliding={false} />;
+    return (
+      <SwipableSlider
+        data={data}
+        arrows={true}
+        autoSliding={true}
+        loop={true}
+        pagination={true}
+      />
+    );
   };
   return (
     <div className="container-fluid main_cont">

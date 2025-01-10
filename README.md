@@ -1,6 +1,7 @@
 # Swipeable Slider with Dynamic Data
 
 This is a Swipeable Slider project ( pre-interview task project )
+with optional features : navs, pagination, loop, autoSlide
 using React + TypeScript + Vite
 
 ### Setup

@@ -13,10 +13,7 @@ export interface swipableSliderProps {
   autoSliding?: boolean;
   style?: { [key: string]: string };
 }
-// interface SldrContRefType {
-//   current: HTMLDivElement;
-//   scrollLeft: number;
-// }
+
 const SwipableSlider = ({
   data,
   style,

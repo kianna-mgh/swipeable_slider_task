@@ -67,7 +67,7 @@ div.prjctslitm_mrow
   gap: 20px;
   align-items: center;
 }
-@media (max-width: 767px) {
+@media (max-width: 768px) {
   .prdslitm_imgcol,
   .cndsite_pr_txtmcol {
     height: 33vh;
