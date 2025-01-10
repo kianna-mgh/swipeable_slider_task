@@ -1,0 +1,7 @@
+.tmpl_mcol {
+  background-color: var(--prm-black);
+  padding: 2rem;
+  border-radius: 1.5rem;
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
+}

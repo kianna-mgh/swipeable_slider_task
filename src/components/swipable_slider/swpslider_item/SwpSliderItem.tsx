@@ -39,8 +39,10 @@ const SwpSliderItem = ({
               </h6>
             </IntrscObserver>
 
-            <div className={`col-md-12 ${classes.cndsite_pr_dtcol} pt-2`}>
-              <p className={` mb-2 font16 txt_gray`}>{cuisine}</p>
+            <div
+              className={`col-md-12 ${classes.cndsite_pr_dtcol} pt-1 pt-md-2`}
+            >
+              <p className={`mb-1 mb-md-2 font16 txt_gray`}>{cuisine}</p>
             </div>
             <div className={`col-md-12  ${classes.cndsite_pr_dtcol}`}>
               <span className={`txt_upstyl font14 gap-3`}>

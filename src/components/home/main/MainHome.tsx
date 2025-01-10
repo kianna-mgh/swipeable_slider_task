@@ -1,46 +1,8 @@
 import SwipableSlider from "../../swipable_slider/SwipableSlider";
 import { useQuery } from "@tanstack/react-query";
 import { getPrdsData } from "../../../lib/util/api";
+import SmpTemp from "../../ui/main/simple_template/SmpTemp";
 
-// export interface dataInterFace {
-//   id: number;
-//   title: string;
-//   description: string;
-//   category: string;
-//   price: number;
-//   discountPercentage: number;
-//   rating: number;
-//   stock: number;
-//   tags: string[];
-//   brand: string;
-//   sk: string;
-//   weight: number;
-//   dimensions: {
-//     width: number;
-//     height: number;
-//     depth: number;
-//   };
-//   warrantyInformation: string;
-//   shippingInformation: string;
-//   availabilityStatus: string;
-//   reviews: {
-//     rating: number;
-//     comment: string;
-//     date: string;
-//     reviewerName: string;
-//     reviewerEmail: string;
-//   }[];
-//   returnPolicy: string;
-//   minimumOrderQuantity: number;
-//   meta: {
-//     createdAt: string;
-//     updatedAt: string;
-//     barcode: string;
-//     qrCode: string;
-//   };
-//   images: string[];
-//   thumbnail: string;
-// }
 export interface DataInterFace {
   id: number;
   name: string;
@@ -60,20 +22,21 @@ export interface DataInterFace {
   mealType: string[];
 }
 const MainHome = () => {
-  const { data } = useQuery({
+  const { data, isPending } = useQuery({
     queryKey: ["recipes"],
     queryFn: () => getPrdsData("https://dummyjson.com/recipes?limit=8"),
   });
-  console.log(data);
+  const SliderSec = () => {
+    if (isPending) return <SmpTemp stylClasses={"plchldr_anim plchld_col"} />;
+    return <SwipableSlider data={data} arrows={true} autoSliding={false} />;
+  };
   return (
     <div className="container-fluid main_cont">
       <div className="row main_mrow h-100">
         <div className="col-12 main_mcol m-auto">
           <div className="row sld_rowsec justify-content-center">
-            <div className="col-8">
-              {data && (
-                <SwipableSlider data={data} arrows={true} autoSliding={false} />
-              )}
+            <div className="col-10 col-md-8">
+              <SliderSec />
             </div>
           </div>
         </div>

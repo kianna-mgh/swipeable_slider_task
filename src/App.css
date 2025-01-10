@@ -300,7 +300,7 @@
   }
 }
 .plchld_col {
-  height: 70vh;
+  height: 75vh;
 }
 .plchldr_anim {
   animation: plcAnim 2s ease-in-out infinite;
@@ -315,5 +315,8 @@
 @media (max-width: 767px) {
   body {
     font-size: 3vw !important;
+  }
+  .plchld_col {
+    height: 50vh;
   }
 }

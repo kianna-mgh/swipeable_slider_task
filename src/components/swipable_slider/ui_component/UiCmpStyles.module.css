@@ -1,0 +1,92 @@
+/*-------ui---------*/
+.slbuts_sec {
+  /* position: relative; */
+  display: flex;
+  margin: auto;
+  height: fit-content;
+}
+.sl_buts {
+  -ms-flex-align: center;
+  align-items: center;
+  background: var(--prm-org);
+  border: 2px solid transparent;
+  border-radius: 50rem;
+  cursor: pointer;
+  display: -ms-flexbox;
+  display: flex;
+  height: 70px;
+  width: 70px;
+  -ms-flex-pack: center;
+  justify-content: center;
+  opacity: 1;
+  padding: 0;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1;
+  backdrop-filter: blur(4px);
+  transition: all 0.4s !important;
+  z-index: 999999;
+}
+.sl_butprv {
+  left: -2rem;
+}
+.sl_butnxt {
+  right: -2rem;
+}
+.sl_buts svg {
+  fill: white;
+  height: 1.5em;
+  width: 1.5em;
+  transition: all 0.4s !important;
+}
+.sl_butprv svg {
+  transform: scaleX(-1);
+}
+.sl_buts:hover {
+  /* opacity: 0.9; */
+  border-color: var(--prm-org);
+  background: #0f0e0e8a;
+}
+.sl_but_dis {
+  opacity: 0.4;
+  border-color: var(--prm-org);
+  transition: all 0.4s !important;
+}
+.sl_but_dis:hover {
+  border-color: transparent !important;
+  background-color: var(--prm-org) !important;
+  transition: all 0.4s !important;
+}
+.sl_pagination_indtrs_ul {
+  width: fit-content !important;
+  margin-block: 1rem 0rem !important;
+}
+.sl_pagination_indtr_but {
+  background-color: var(--bdbs-bgcolor);
+  border: 2px solid white;
+  border-radius: 4rem;
+  width: 20px;
+  height: 20px;
+  margin: 0px;
+  padding: 0px;
+  transition: all 0.4s;
+}
+.sl_pagination_indtr_but.active {
+  background-color: var(--prm-org);
+  border-color: var(--prm-org);
+}
+@media (max-width: 767px) {
+  .sl_buts {
+    width: 40px;
+    height: 40px;
+  }
+  .sl_pagination_indtr_but {
+    width: 15px;
+    height: 15px;
+  }
+  .sl_buts svg {
+    height: 1.2em;
+    width: 1.2em;
+  }
+}

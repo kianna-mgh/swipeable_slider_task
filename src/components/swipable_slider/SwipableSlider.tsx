@@ -2,12 +2,15 @@ import { useState, useEffect, useCallback } from "react";
 import { DataInterFace } from "../home/main/MainHome";
 import SwpSliderItem from "./swpslider_item/SwpSliderItem";
 import classes from "./SwipableSlider.module.css";
+import SwpSliderNavs from "./ui_component/SwpSliderNavs";
+import SwpSliderPagination from "./ui_component/SwpSliderPagination";
 
 export interface swipableSliderProps {
   data: { recipes: DataInterFace[] };
-  arrows: boolean;
+  loop?: boolean;
+  arrows?: boolean;
   pagination?: boolean;
-  autoSliding: boolean;
+  autoSliding?: boolean;
   style?: { [key: string]: string };
 }
 // interface SldrContRefType {
@@ -17,36 +20,54 @@ export interface swipableSliderProps {
 const SwipableSlider = ({
   data,
   style,
-  arrows,
-  autoSliding = true,
+  arrows = true,
+  pagination = true,
+  loop = false,
+  autoSliding = false,
 }: swipableSliderProps) => {
   const [sldrItemIndx, setSldrItemIndx] = useState<number>(0);
   const [autoSlide, setAutoSlide] = useState(autoSliding);
-
+  const [enableloop, setEnableloop] = useState(loop);
   const nxtitemHndlr = useCallback(() => {
     setSldrItemIndx((prvState) => {
-      if (prvState === data?.recipes.length - 1) {
-        return 0;
+      if (enableloop) {
+        if (prvState === data?.recipes.length - 1) {
+          return 0;
+        }
+        return prvState + 1;
+      } else {
+        if (prvState === data?.recipes.length - 1) {
+          return prvState;
+        }
+        return prvState + 1;
       }
-      return prvState + 1;
     });
-  }, [data]);
+  }, [data, enableloop]);
   const prvitemHndlr = () => {
     setSldrItemIndx((prvState) => {
-      if (prvState === 0) {
-        return data?.recipes.length - 1;
+      if (enableloop) {
+        if (prvState === 0) {
+          return data?.recipes.length - 1;
+        }
+        return prvState - 1;
+      } else {
+        if (prvState === 0) {
+          return 0;
+        }
+        return prvState - 1;
       }
-      return prvState - 1;
     });
   };
   useEffect(() => {
     if (autoSlide) {
+      setEnableloop(true);
       const autoScrlTmOut = setTimeout(() => {
         nxtitemHndlr();
       }, 3000);
       return () => clearTimeout(autoScrlTmOut);
     }
   }, [autoSlide, sldrItemIndx, nxtitemHndlr]);
+
   return (
     <>
       <div
@@ -67,30 +88,20 @@ const SwipableSlider = ({
           ))}
         </div>
         {arrows && (
-          <div className={`${classes.slbuts_sec}`}>
-            <button
-              className={`${classes.sl_buts} ${classes.sl_butprv}`}
-              onClick={prvitemHndlr}
-            >
-              <svg viewBox="0 0 40 40" width="40" height="40" focusable="false">
-                <path d="m15.5 0.932-4.3 4.38 14.5 14.6-14.5 14.5 4.3 4.4 14.6-14.6 4.4-4.3-4.4-4.4-14.6-14.6z"></path>
-              </svg>
-            </button>
-            <button
-              className={`${classes.sl_buts} ${classes.sl_butnxt}`}
-              onClick={nxtitemHndlr}
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 40 40"
-                width="40"
-                height="40"
-                focusable="false"
-              >
-                <path d="m15.5 0.932-4.3 4.38 14.5 14.6-14.5 14.5 4.3 4.4 14.6-14.6 4.4-4.3-4.4-4.4-14.6-14.6z"></path>
-              </svg>
-            </button>
-          </div>
+          <SwpSliderNavs
+            prvHandler={prvitemHndlr}
+            nxtHandlr={nxtitemHndlr}
+            haveLoop={enableloop}
+            sldrItemIndx={sldrItemIndx}
+            sldsLenght={data?.recipes.length}
+          />
+        )}
+        {pagination && (
+          <SwpSliderPagination
+            setSldrItemIndx={setSldrItemIndx}
+            slides={data.recipes}
+            sldrItemIndx={sldrItemIndx}
+          />
         )}
       </div>
     </>
